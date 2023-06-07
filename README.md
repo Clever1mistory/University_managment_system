@@ -8,7 +8,6 @@
 Для запуска: `uvicorn main:app --reload`
 Проверить работоспособность API можно проверить по адресу: http://localhost:8000/docs
 
-ER-диаграмма
 ![Аннотация 2023-06-07 153239](https://github.com/Clever1mistory/University_managment_system/assets/128373879/129cd0f9-3f3c-45ef-a120-55ce2adfa645)
 
 
