@@ -106,4 +106,4 @@
 </body>
 </html>
 
-![drawSQL-first-univ-export-2023-06-07](https://github.com/Clever1mistory/University-managment-systems/assets/128373879/cae74521-3ed2-421b-a6fc-a4e2579bfb21)
+![drawSQL-first-univ-export-2023-06-07](https://github.com/Clever1mistory/University_managment_system/assets/128373879/a94ce03b-c7ee-46d0-a4e6-9d6a7fd4728b)
