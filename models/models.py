@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 
 
 class Student(BaseModel):
+    id: int
     name: str
     email: str
     age: int
