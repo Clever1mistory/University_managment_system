@@ -1,4 +1,5 @@
-
+###Тестовое задание "Система управления университетом"
+1. База данных/создание сущностей
 <html>
 <body>
 <p>
@@ -105,5 +106,125 @@
 </p>
 </body>
 </html>
+SQL скрипты для создания таблиц:
 
+CREATE TABLE student (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+group_id INTEGER NOT NULL,
+FOREIGN KEY (group_id) REFERENCES group (id)
+);
+
+CREATE TABLE teacher (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+age INTEGER NOT NULL,
+department_id INTEGER NOT NULL,
+FOREIGN KEY (department_id) REFERENCES department (id)
+);
+
+CREATE TABLE course (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+faculty_id INTEGER NOT NULL,
+group_id INTEGER NOT NULL,
+FOREIGN KEY (faculty_id) REFERENCES faculty (id),
+FOREIGN KEY (group_id) REFERENCES group (id)
+);
+
+CREATE TABLE group (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+department_id INTEGER NOT NULL,
+FOREIGN KEY (department_id) REFERENCES department (id)
+);
+
+CREATE TABLE department (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+faculty_id INTEGER NOT NULL,
+FOREIGN KEY (faculty_id) REFERENCES faculty (id)
+);
+
+CREATE TABLE grade (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+value INTEGER NOT NULL,
+student_id INTEGER NOT NULL,
+exam_id INTEGER NOT NULL,
+FOREIGN KEY (student_id) REFERENCES student (id),
+FOREIGN KEY (exam_id) REFERENCES exam (id)
+);
+
+CREATE TABLE schedule (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+day_of_week INTEGER NOT NULL,
+start_time TIME NOT NULL,
+start_date DATE NOT NULL,
+course_id INTEGER NOT NULL,
+group_id INTEGER NOT NULL,
+classroom_id INTEGER NOT NULL,
+FOREIGN KEY (course_id) REFERENCES course (id),
+FOREIGN KEY (group_id) REFERENCES group (id),
+FOREIGN KEY (classroom_id) REFERENCES classroom (id)
+);
+
+CREATE TABLE building (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL
+);
+
+CREATE TABLE classroom (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+number TEXT NOT NULL,
+building_id INTEGER NOT NULL,
+FOREIGN KEY (building_id) REFERENCES building (id)
+);
+
+CREATE TABLE semester (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+start_date DATE NOT NULL,
+end_date DATE NOT NULL
+);
+
+CREATE TABLE faculty (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL
+);
+
+CREATE TABLE exam (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+course_id INTEGER NOT NULL,
+date DATE NOT NULL,
+FOREIGN KEY (course_id) REFERENCES course (id)
+);
+
+CREATE TABLE indepwork (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+description TEXT NOT NULL,
+given_date DATE NOT NULL,
+due_date DATE NOT NULL,
+course_id INTEGER NOT NULL,
+FOREIGN KEY (course_id) REFERENCES course (id)
+);
+
+CREATE TABLE course_program (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+semester_id INTEGER NOT NULL,
+course_id INTEGER NOT NULL,
+FOREIGN KEY (semester_id) REFERENCES semester (id),
+FOREIGN KEY (course_id) REFERENCES course (id)
+);
+
+CREATE TABLE eduplan (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+faculty_id INTEGER NOT NULL,
+semester_id INTEGER NOT NULL,
+FOREIGN KEY (faculty_id) REFERENCES faculty (id),
+FOREIGN KEY (semester_id) REFERENCES semester (id)
+);
 ![drawSQL-first-univ-export-2023-06-07](https://github.com/Clever1mistory/University_managment_system/assets/128373879/a94ce03b-c7ee-46d0-a4e6-9d6a7fd4728b)
