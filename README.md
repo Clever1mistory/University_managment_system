@@ -1,5 +1,6 @@
 ###Тестовое задание "Система управления университетом"
-1. База данных/создание сущностей
+Части 1 и 2 представлены в данном файле, часть 3 находится непосредственно в коде :)
+Часть 1. База данных/создание сущностей
 <html>
 <body>
 <p>
@@ -228,3 +229,26 @@ FOREIGN KEY (faculty_id) REFERENCES faculty (id),
 FOREIGN KEY (semester_id) REFERENCES semester (id)
 );
 ![drawSQL-first-univ-export-2023-06-07](https://github.com/Clever1mistory/University_managment_system/assets/128373879/a94ce03b-c7ee-46d0-a4e6-9d6a7fd4728b)
+
+Часть 2. SQL запросы
+- Выборка всех студентов на курсе "Математика"
+SELECT student.*
+FROM student
+INNER JOIN course ON student.group_id = course.group_id
+WHERE course.name = "Математика";
+- Обновить оценку студента по курсу
+UPDATE grade
+SET value = 5
+WHERE student_id = 1 AND course_id = 2;
+- Выбрать всех преподавателей, которые преподают в здании №3
+SELECT teacher.*
+FROM teacher
+INNER JOIN course ON course.faculty_id = teacher.department_id
+INNER JOIN group ON course.group_id = group.id
+WHERE group.department_id = 3;
+- Удалить задание для самостоятельной работы, которое было создано более года назад
+DELETE FROM indepwork
+WHERE given_date < DATE_SUB(NOW(), INTERVAL 1 YEAR);
+- Добавить новый семестр в учебный год
+INSERT INTO semester (start_date, semester_id)
+VALUES (2023, 1);
